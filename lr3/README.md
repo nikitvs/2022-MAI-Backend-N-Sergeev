@@ -1,0 +1,1 @@
+Предпочтительно запускать командой: python3 manage.py runserver 3535
