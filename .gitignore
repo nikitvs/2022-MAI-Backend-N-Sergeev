@@ -3,3 +3,4 @@ venv/
 *.swo
 *.swp
 __pycache__/
+.local_settings

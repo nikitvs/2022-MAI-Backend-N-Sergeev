@@ -1,0 +1,30 @@
+#---------------------------
+# My settings
+#---------------------------
+
+# бэкенд
+upstream backend {
+    server localhost:8000 weight=1 max_fails=3 fail_timeout=360s;
+}
+server {
+    listen 80;
+    listen [::]:80;
+    
+    server_name localhost;
+
+    root /home/user/workspace/pi/labs/lr2;
+
+    location /public/ {
+        alias /data/www/;
+    }
+    location /public/images/ {
+        alias /data/images/;
+    }
+    location /backend/ {
+        proxy_pass http://backend;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
